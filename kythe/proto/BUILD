@@ -1,6 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@rules_java//java:defs.bzl", "java_proto_library")
 load("//:visibility.bzl", "PUBLIC_PROTO_VISIBILITY")
 load(":genproto.bzl", "update_generated_protos")
 load(":go.bzl", "go_proto_library")
@@ -47,12 +46,6 @@ go_proto_library(
     deps = [":storage_go_proto"],
 )
 
-java_proto_library(
-    name = "schema_java_proto",
-    visibility = [PUBLIC_PROTO_VISIBILITY],
-    deps = [":schema_proto"],
-)
-
 cc_proto_library(
     name = "schema_cc_proto",
     visibility = [PUBLIC_PROTO_VISIBILITY],
@@ -79,12 +72,6 @@ go_proto_library(
     proto = ":common_proto",
 )
 
-java_proto_library(
-    name = "common_java_proto",
-    visibility = [PUBLIC_PROTO_VISIBILITY],
-    deps = [":common_proto"],
-)
-
 # Public Kythe GraphStore analyzer output format
 proto_library(
     name = "storage_proto",
@@ -104,12 +91,6 @@ go_proto_library(
     name = "storage_go_proto",
     importpath = "kythe.io/kythe/proto/storage_go_proto",
     proto = ":storage_proto",
-)
-
-java_proto_library(
-    name = "storage_java_proto",
-    visibility = [PUBLIC_PROTO_VISIBILITY],
-    deps = [":storage_proto"],
 )
 
 # Public Kythe GraphStore service API
@@ -134,11 +115,6 @@ go_proto_library(
     proto = ":storage_service_proto",
     visibility = [PUBLIC_PROTO_VISIBILITY],
     deps = [":storage_go_proto"],
-)
-
-java_proto_library(
-    name = "storage_service_java_proto",
-    deps = [":storage_service_proto"],
 )
 
 # Public Kythe analyzer
@@ -171,12 +147,6 @@ go_proto_library(
     ],
 )
 
-java_proto_library(
-    name = "analysis_java_proto",
-    visibility = [PUBLIC_PROTO_VISIBILITY],
-    deps = [":analysis_proto"],
-)
-
 # Public Kythe file data service APIs
 proto_library(
     name = "analysis_service_proto",
@@ -200,11 +170,6 @@ go_proto_library(
     deps = [":analysis_go_proto"],
 )
 
-java_proto_library(
-    name = "analysis_service_java_proto",
-    deps = [":analysis_service_proto"],
-)
-
 # Public Kythe status service API
 proto_library(
     name = "status_service_proto",
@@ -225,11 +190,6 @@ go_proto_library(
     deps = [":common_go_proto"],
 )
 
-java_proto_library(
-    name = "status_service_java_proto",
-    deps = [":status_service_proto"],
-)
-
 # Context-dependent version information, for claiming.
 proto_library(
     name = "filecontext_proto",
@@ -245,11 +205,6 @@ go_proto_library(
     name = "filecontext_go_proto",
     importpath = "kythe.io/kythe/proto/filecontext_go_proto",
     proto = ":filecontext_proto",
-)
-
-java_proto_library(
-    name = "filecontext_java_proto",
-    deps = [":filecontext_proto"],
 )
 
 # Build tool details for compilation units
@@ -270,11 +225,6 @@ go_proto_library(
     proto = ":buildinfo_proto",
 )
 
-java_proto_library(
-    name = "buildinfo_java_proto",
-    deps = [":buildinfo_proto"],
-)
-
 # C++-specific protocol buffer definitions
 proto_library(
     name = "cxx_proto",
@@ -292,11 +242,6 @@ go_proto_library(
     proto = ":cxx_proto",
 )
 
-java_proto_library(
-    name = "cxx_java_proto",
-    deps = [":cxx_proto"],
-)
-
 # Go-specific protocol buffer definitions
 proto_library(
     name = "go_proto",
@@ -312,11 +257,6 @@ go_proto_library(
     name = "go_go_proto",
     importpath = "kythe.io/kythe/proto/go_go_proto",
     proto = ":go_proto",
-)
-
-java_proto_library(
-    name = "go_java_proto",
-    deps = [":go_proto"],
 )
 
 # Java-specific protocol buffer definitions
@@ -338,11 +278,6 @@ go_proto_library(
     deps = [":storage_go_proto"],
 )
 
-java_proto_library(
-    name = "java_java_proto",
-    deps = [":java_proto"],
-)
-
 # Kythe claiming message definitions
 proto_library(
     name = "claim_proto",
@@ -362,11 +297,6 @@ go_proto_library(
     deps = [":storage_go_proto"],
 )
 
-java_proto_library(
-    name = "claim_java_proto",
-    deps = [":claim_proto"],
-)
-
 # Public Kythe filetree service API
 proto_library(
     name = "filetree_proto",
@@ -383,11 +313,6 @@ go_proto_library(
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
     importpath = "kythe.io/kythe/proto/filetree_go_proto",
     proto = ":filetree_proto",
-)
-
-java_proto_library(
-    name = "filetree_java_proto",
-    deps = [":filetree_proto"],
 )
 
 # Public Kythe xref service API
@@ -424,11 +349,6 @@ go_proto_library(
     deps = [":common_go_proto"],
 )
 
-java_proto_library(
-    name = "xref_java_proto",
-    deps = [":xref_proto"],
-)
-
 proto_library(
     name = "identifier_proto",
     srcs = ["identifier.proto"],
@@ -444,11 +364,6 @@ go_proto_library(
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
     importpath = "kythe.io/kythe/proto/identifier_go_proto",
     proto = ":identifier_proto",
-)
-
-java_proto_library(
-    name = "identifier_java_proto",
-    deps = [":identifier_proto"],
 )
 
 # Public Kythe graph service API
@@ -468,11 +383,6 @@ go_proto_library(
 
 cc_proto_library(
     name = "graph_cc_proto",
-    deps = [":graph_proto"],
-)
-
-java_proto_library(
-    name = "graph_java_proto",
     deps = [":graph_proto"],
 )
 
@@ -504,11 +414,6 @@ cc_proto_library(
     deps = [":explore_proto"],
 )
 
-java_proto_library(
-    name = "explore_java_proto",
-    deps = [":explore_proto"],
-)
-
 # Protocol buffer definitions used to encode serving data
 # WARNING: These should not be exposed to clients.
 proto_library(
@@ -533,12 +438,6 @@ go_proto_library(
     importpath = "kythe.io/kythe/proto/serving_go_proto",
     proto = ":serving_proto",
     deps = [":common_go_proto"],
-)
-
-java_proto_library(
-    name = "serving_java_proto",
-    visibility = ["//visibility:public"],
-    deps = [":serving_proto"],
 )
 
 proto_library(
@@ -604,11 +503,6 @@ go_proto_library(
     deps = [":common_go_proto"],
 )
 
-java_proto_library(
-    name = "link_java_proto",
-    deps = [":link_proto"],
-)
-
 # Protocol buffer definitions internal only to the Kythe libraries and tools.
 # WARNING: These should not be exposed to clients.
 proto_library(
@@ -629,11 +523,6 @@ go_proto_library(
     deps = [":serving_go_proto"],
 )
 
-java_proto_library(
-    name = "internal_java_proto",
-    deps = [":internal_proto"],
-)
-
 # Protocol buffer definitions used to record indexer outputs for storage.
 # WARNING: These should not be exposed to clients.
 proto_library(
@@ -650,11 +539,6 @@ go_proto_library(
     name = "entryset_go_proto",
     importpath = "kythe.io/kythe/proto/entryset_go_proto",
     proto = ":entryset_proto",
-)
-
-java_proto_library(
-    name = "entryset_java_proto",
-    deps = [":entryset_proto"],
 )
 
 proto_library(
@@ -744,11 +628,6 @@ cc_proto_library(
     deps = [":metadata_proto"],
 )
 
-java_proto_library(
-    name = "metadata_java_proto",
-    deps = [":metadata_proto"],
-)
-
 bzl_library(
     name = "genproto_bzl",
     srcs = ["genproto.bzl"],
@@ -815,14 +694,6 @@ go_proto_library(
     importpath = "kythe.io/kythe/proto/generated_message_info_go_proto",
     proto = ":generated_message_info_proto",
     visibility = [PUBLIC_PROTO_VISIBILITY],
-)
-
-java_proto_library(
-    name = "generated_message_info_java_proto",
-    visibility = [PUBLIC_PROTO_VISIBILITY],
-    deps = [
-        ":generated_message_info_proto",
-    ],
 )
 
 cc_proto_library(
