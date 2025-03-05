@@ -250,6 +250,7 @@ def _cc_dependencies():
         name = "com_googlesource_code_re2",
         repo_name = "google/re2",
         commit = "1e44e72d31ddc66b783a545e9d9fcaa876a146b7",
+        integrity = "sha256-ihSWrTM50oDsQKaXFBUoQjQMtQr62pdYQy+JOch+48E=",
     )
 
     maybe(
@@ -270,6 +271,7 @@ def _cc_dependencies():
         repo_name = "google/snappy",
         build_file = "@io_kythe//third_party:snappy.BUILD",
         commit = "1.1.8",
+        integrity = "sha256-OLSqv4jrSAEx7UW/uJwZyj4qYtrrCBvfABz7F+xM0wM=",
     )
 
     maybe(
@@ -288,7 +290,8 @@ def _cc_dependencies():
         github_archive,
         name = "com_github_inazarenko_protobuf_matchers",
         repo_name = "inazarenko/protobuf-matchers",
-        commit = "8edcd4f7cad4f35e9bd304ff9d45a035c50c9290",
+        commit = "2aeaf99c0f3e81e4fa493bc91f99616d1d7608b9",
+        integrity = "sha256-OFRBZzcHjcAXXDv2uFk1zDUywqtlc+M1DimY33++HxM=",
     )
 
     lexyacc_configure()

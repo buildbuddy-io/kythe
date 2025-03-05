@@ -5,6 +5,20 @@ load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//:version.bzl", "MAX_VERSION", "MIN_VERSION", "check_version")
 
 http_archive(
+    name = "bazel_features",
+    sha256 = "cec7fbc7bce6597cf2e83e01ddd9328a1bb057dc1a3092745238f49d3301ab5a",
+    strip_prefix = "bazel_features-1.12.0",
+    url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.12.0/bazel_features-v1.12.0.tar.gz",
+)
+
+http_archive(
+    name = "rules_shell",
+    sha256 = "d8cd4a3a91fc1dc68d4c7d6b655f09def109f7186437e3f50a9b60ab436a0c53",
+    strip_prefix = "rules_shell-0.3.0",
+    url = "https://github.com/bazelbuild/rules_shell/releases/download/v0.3.0/rules_shell-v0.3.0.tar.gz",
+)
+
+http_archive(
     name = "rules_cc",
     urls = ["https://github.com/bazelbuild/rules_cc/releases/download/0.0.17/rules_cc-0.0.17.tar.gz"],
     sha256 = "abc605dd850f813bb37004b77db20106a19311a96b2da1c92b789da529d28fe1",
@@ -61,7 +75,21 @@ http_archive(
         "@io_bazel_rules_go//third_party:org_golang_x_tools-gazelle.patch",
     ],
     patch_args = ["-p1"],
+    integrity = "sha256-BzaxoKoo9IB0iRoPk871OWV129c7m1zcTeVLKjv6S0s=",
 )
+
+http_archive(
+    name = "aspect_bazel_lib",
+    sha256 = "40ba9d0f62deac87195723f0f891a9803a7b720d7b89206981ca5570ef9df15b",
+    strip_prefix = "bazel-lib-2.14.0",
+    url = "https://github.com/aspect-build/bazel-lib/releases/download/v2.14.0/bazel-lib-v2.14.0.tar.gz",
+)
+
+load("@rules_shell//shell:repositories.bzl", "rules_shell_dependencies", "rules_shell_toolchains")
+
+rules_shell_dependencies()
+
+rules_shell_toolchains()
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps", "PROTOBUF_MAVEN_ARTIFACTS")
 
@@ -97,6 +125,12 @@ rules_proto_dependencies()
 load("@rules_proto//proto:toolchains.bzl", "rules_proto_toolchains")
 
 rules_proto_toolchains()
+
+load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies", "aspect_bazel_lib_register_toolchains")
+
+aspect_bazel_lib_dependencies()
+
+aspect_bazel_lib_register_toolchains()
 
 # Check that the user has a version between our minimum supported version of
 # Bazel and our maximum supported version of Bazel.
@@ -138,7 +172,7 @@ nodejs_register_toolchains(
     node_version = DEFAULT_NODE_VERSION,
 )
 
-load("@aspect_rules_js//npm:npm_import.bzl", "npm_translate_lock")
+load("@aspect_rules_js//npm:repositories.bzl", "npm_translate_lock")
 
 npm_translate_lock(
     name = "npm",
@@ -228,17 +262,6 @@ ruby_bundle(
     gemfile = "//kythe/web/site:Gemfile",
     gemfile_lock = "//kythe/web/site:Gemfile.lock",
 )
-
-http_archive(
-    name = "aspect_bazel_lib",
-    sha256 = "d488d8ecca98a4042442a4ae5f1ab0b614f896c0ebf6e3eafff363bcc51c6e62",
-    strip_prefix = "bazel-lib-1.33.0",
-    url = "https://github.com/aspect-build/bazel-lib/releases/download/v1.33.0/bazel-lib-v1.33.0.tar.gz",
-)
-
-load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
-
-aspect_bazel_lib_dependencies()
 
 # clang-tidy aspect wrapper
 load(

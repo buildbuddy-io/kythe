@@ -88,24 +88,19 @@ def kythe_rule_repositories():
     maybe(
         http_archive,
         name = "bazel_gazelle",
-        sha256 = "29218f8e0cebe583643cbf93cae6f971be8a2484cdcfa1e45057658df8d54002",
+        sha256 = "5d80e62a70314f39cc764c1c3eaa800c5936c9f1ea91625006227ce4d20cd086",
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v0.32.0/bazel-gazelle-v0.32.0.tar.gz",
-            "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.32.0/bazel-gazelle-v0.32.0.tar.gz",
-        ],
-        patch_args = ["-p1"],
-        patches = [
-            # Add support for per-file go_test targets.
-            "//third_party:gazelle-0.32.0-go_test_mode.patch",
+            "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v0.42.0/bazel-gazelle-v0.42.0.tar.gz",
+            "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.42.0/bazel-gazelle-v0.42.0.tar.gz",
         ],
     )
 
     maybe(
         http_archive,
         name = "aspect_rules_js",
-        sha256 = "7ab9776bcca823af361577a1a2ebb9a30d2eb5b94ecc964b8be360f443f714b2",
-        strip_prefix = "rules_js-1.32.6",
-        url = "https://github.com/aspect-build/rules_js/releases/download/v1.32.6/rules_js-v1.32.6.tar.gz",
+        sha256 = "d66f8abf914a0454a69181b7b17acaae56d7b0e2784cb26b40cb3273c4d836d1",
+        strip_prefix = "rules_js-2.2.0",
+        url = "https://github.com/aspect-build/rules_js/releases/download/v2.2.0/rules_js-v2.2.0.tar.gz",
     )
 
     maybe(
@@ -119,17 +114,17 @@ def kythe_rule_repositories():
     maybe(
         http_archive,
         name = "aspect_rules_ts",
-        sha256 = "bd3e7b17e677d2b8ba1bac3862f0f238ab16edb3e43fb0f0b9308649ea58a2ad",
-        strip_prefix = "rules_ts-2.1.0",
-        url = "https://github.com/aspect-build/rules_ts/releases/download/v2.1.0/rules_ts-v2.1.0.tar.gz",
+        sha256 = "4263532b2fb4d16f309d80e3597191a1cb2fb69c19e95d91711bd6b97874705e",
+        strip_prefix = "rules_ts-3.5.0",
+        url = "https://github.com/aspect-build/rules_ts/releases/download/v3.5.0/rules_ts-v3.5.0.tar.gz",
     )
 
     maybe(
         http_archive,
         name = "aspect_rules_jasmine",
-        sha256 = "4c16ef202d1e53fd880e8ecc9e0796802201ea9c89fa32f52d5d633fff858cac",
-        strip_prefix = "rules_jasmine-1.1.1",
-        url = "https://github.com/aspect-build/rules_jasmine/releases/download/v1.1.1/rules_jasmine-v1.1.1.tar.gz",
+        sha256 = "0d2f9c977842685895020cac721d8cc4f1b37aae15af46128cf619741dc61529",
+        strip_prefix = "rules_jasmine-2.0.0",
+        url = "https://github.com/aspect-build/rules_jasmine/releases/download/v2.0.0/rules_jasmine-v2.0.0.tar.gz",
     )
 
     maybe(
@@ -180,6 +175,7 @@ def kythe_rule_repositories():
         build_file_content = "#empty",
         patch_args = ["-p1"],
         patches = ["@io_kythe//third_party:llvm-bazel-glob.patch"],
+        integrity = "sha256-bt8XNPQbixKOYOBAACm+LrLvg42JEkO8kE7zYj5BiG8=",
     )
 
     maybe(
