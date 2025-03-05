@@ -2,6 +2,7 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("//:version.bzl", "MAX_VERSION", "MIN_VERSION")
 load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")
+load("@io_bazel_rules_go//go:def.bzl", "nogo")
 
 package(default_visibility = ["//visibility:private"])
 
@@ -29,6 +30,12 @@ sh_test(
         ".bazelminversion",
         ".bazelversion",
     ],
+)
+
+nogo(
+    name = "my_nogo",
+    vet = True,
+    visibility = ["//visibility:public"],
 )
 
 # gazelle:build_file_name BUILD

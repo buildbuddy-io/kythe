@@ -50,10 +50,11 @@ def kythe_rule_repositories():
     maybe(
         http_archive,
         name = "io_bazel_rules_go",
-        sha256 = "278b7ff5a826f3dc10f04feaf0b70d48b68748ccd512d7f98bf442077f043fe3",
+        integrity = "sha256-yruF04LPIjMYaJjb6XivkvXxyZQv/R0Y6mob/2jyNCo=",
+        strip_prefix = "rules_go-077f15fe11b9da6aa0e3271db1260929f04fef87",
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.41.0/rules_go-v0.41.0.zip",
-            "https://github.com/bazelbuild/rules_go/releases/download/v0.41.0/rules_go-v0.41.0.zip",
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_go/archive/077f15fe11b9da6aa0e3271db1260929f04fef87.zip",
+            "https://github.com/bazelbuild/rules_go/archive/077f15fe11b9da6aa0e3271db1260929f04fef87.zip",
         ],
     )
 
@@ -184,6 +185,7 @@ def kythe_rule_repositories():
     maybe(
         github_archive,
         repo_name = "hedronvision/bazel-compile-commands-extractor",
+        integrity = "sha256-Df55O1d5hVz3Oz7p9DDgAiX1HzjHBVWTbU3W8bPGXmY=",
         name = "hedron_compile_commands",
         commit = "d6734f1d7848800edc92de48fb9d9b82f2677958",
     )
@@ -196,10 +198,10 @@ def kythe_rule_repositories():
     maybe(
         http_archive,
         name = "com_google_protobuf",
-        sha256 = "8ff511a64fc46ee792d3fe49a5a1bcad6f7dc50dfbba5a28b0e5b979c17f9871",
-        strip_prefix = "protobuf-25.2",
+        # sha256 = "8ff511a64fc46ee792d3fe49a5a1bcad6f7dc50dfbba5a28b0e5b979c17f9871",
+        strip_prefix = "protobuf-30.0",
         urls = [
-            "https://github.com/protocolbuffers/protobuf/releases/download/v25.2/protobuf-25.2.tar.gz",
+            "https://github.com/protocolbuffers/protobuf/releases/download/v30.0/protobuf-30.0.tar.gz",
         ],
         repo_mapping = {"@zlib": "@net_zlib"},
     )

@@ -1,5 +1,9 @@
 module kythe.io
 
+go 1.24.1
+
+toolchain go1.24.1
+
 require (
 	bitbucket.org/creachadair/shell v0.0.7
 	bitbucket.org/creachadair/stringset v0.0.11
@@ -23,12 +27,12 @@ require (
 	github.com/sourcegraph/go-langserver v2.0.0+incompatible
 	github.com/sourcegraph/jsonrpc2 v0.2.0
 	github.com/syndtr/goleveldb v1.0.0
-	golang.org/x/net v0.23.0
+	golang.org/x/net v0.35.0
 	golang.org/x/oauth2 v0.13.0
-	golang.org/x/sync v0.4.0
-	golang.org/x/sys v0.18.0
-	golang.org/x/text v0.14.0
-	golang.org/x/tools v0.14.0
+	golang.org/x/sync v0.11.0
+	golang.org/x/sys v0.30.0
+	golang.org/x/text v0.22.0
+	golang.org/x/tools v0.30.0
 	golang.org/x/tools/go/vcs v0.1.0-deprecated
 	google.golang.org/api v0.146.0
 	google.golang.org/grpc v1.58.3
@@ -57,9 +61,9 @@ require (
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
+	golang.org/x/crypto v0.33.0 // indirect
 	golang.org/x/exp v0.0.0-20230626212559-97b1e661b5df // indirect
-	golang.org/x/mod v0.13.0 // indirect
+	golang.org/x/mod v0.23.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20231009173412-8bfb1ae86b6c // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231009173412-8bfb1ae86b6c // indirect
 )
@@ -83,5 +87,3 @@ require (
 	google.golang.org/genproto v0.0.0-20231009173412-8bfb1ae86b6c // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
-
-go 1.21

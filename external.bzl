@@ -21,7 +21,7 @@ load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_depende
 load(
     "@rules_java//java:repositories.bzl",
     "remote_jdk17_repos",
-    "remote_jdk20_repos",
+    "remote_jdk21_repos",
     "rules_java_dependencies",
 )
 load("@rules_java//toolchains:remote_java_repository.bzl", "remote_java_repository")
@@ -30,59 +30,15 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies")
 load("@rules_python//python:repositories.bzl", "py_repositories")
 
 def _rule_dependencies():
-    go_rules_dependencies()
-    GO_SDK_VERSION = "1.21.6"
-    # Register multiple Go SDKs so that we can perform cross-compilation remotely.
-    # i.e. We might want to trigger a Linux AMD64 Go build remotely from a MacOS ARM64 laptop.
-    #
-    # Reference: https://github.com/bazelbuild/rules_go/issues/3540.
-    go_download_sdk(
-        name = "go_sdk_linux",
-        goarch = "amd64",
-        goos = "linux",
-        version = GO_SDK_VERSION,
-    )
-    go_download_sdk(
-        name = "go_sdk_linux_arm64",
-        goarch = "arm64",
-        goos = "linux",
-        version = GO_SDK_VERSION,
-    )
-    go_download_sdk(
-        name = "go_sdk_darwin",
-        goarch = "amd64",
-        goos = "darwin",
-        version = GO_SDK_VERSION,
-    )
-    go_download_sdk(
-        name = "go_sdk_darwin_arm64",
-        goarch = "arm64",
-        goos = "darwin",
-        version = GO_SDK_VERSION,
-    )
-    go_download_sdk(
-        name = "go_sdk_windows",
-        goarch = "amd64",
-        goos = "windows",
-        version = GO_SDK_VERSION,
-    )
-    go_download_sdk(
-        name = "go_sdk_windows_arm64",
-        goarch = "arm64",
-        goos = "windows",
-        version = GO_SDK_VERSION,
-    )
-    go_register_toolchains()
     gazelle_dependencies()
     rules_java_dependencies()
 
     # Specifically define and register only Java toolchains we intend to support.
     remote_jdk17_repos()
     remote_jdk19_repos()
-    remote_jdk20_repos()
     remote_jdk21_repos()
     native.register_toolchains("@local_jdk//:runtime_toolchain_definition")
-    for version in ("11", "17", "19", "20", "21"):
+    for version in ("11", "17", "19", "21"):
         for platform in ("linux", "macos", "win"):
             native.register_toolchains("@remotejdk{version}_{platform}_toolchain_config_repo//:toolchain".format(
                 version = version,
@@ -2485,11 +2441,11 @@ def _go_dependencies():
         # Must be kept in sync with rules_go or the patches may fail.
         # v0.7.0, latest as of 2023-03-27
         urls = [
-            "https://mirror.bazel.build/github.com/golang/tools/archive/refs/tags/v0.7.0.zip",
-            "https://github.com/golang/tools/archive/refs/tags/v0.7.0.zip",
+            "https://mirror.bazel.build/github.com/golang/tools/archive/refs/tags/v0.30.0.zip",
+            "https://github.com/golang/tools/archive/refs/tags/v0.30.0.zip",
         ],
-        sha256 = "9f20a20f29f4008d797a8be882ef82b69cf8f7f2b96dbdfe3814c57d8280fa4b",
-        strip_prefix = "tools-0.7.0",
+        # sha256 = "9f20a20f29f4008d797a8be882ef82b69cf8f7f2b96dbdfe3814c57d8280fa4b",
+        strip_prefix = "tools-0.30.0",
         patches = [
             "@io_kythe//third_party/go:add_export_license.patch",
             # deletegopls removes the gopls subdirectory. It contains a nested
@@ -2637,40 +2593,4 @@ def remote_jdk19_repos():
         os = "windows",
         cpu = "x86_64",
         version = "19.32.13-ca-jdk19.0.2",
-    )
-
-def remote_jdk21_repos():
-    """Imports OpenJDK 21 repositories."""
-
-    maybe(
-        _remote_jdk_repository,
-        name = "remotejdk21_linux",
-        os = "linux",
-        cpu = "x86_64",
-        version = "21.28.85-ca-jdk21.0.0",
-        sha256 = "0c0eadfbdc47a7ca64aeab51b9c061f71b6e4d25d2d87674512e9b6387e9e3a6",
-    )
-
-    maybe(
-        _remote_jdk_repository,
-        name = "remotejdk21_macos",
-        os = "macos",
-        cpu = "x86_64",
-        version = "21.28.85-ca-jdk21.0.0",
-    )
-
-    maybe(
-        _remote_jdk_repository,
-        name = "remotejdk21_macos_aarch64",
-        os = "macos",
-        cpu = "aarch64",
-        version = "21.28.85-ca-jdk21.0.0",
-    )
-
-    maybe(
-        _remote_jdk_repository,
-        name = "remotejdk21_win",
-        os = "windows",
-        cpu = "x86_64",
-        version = "21.28.85-ca-jdk21.0.0",
     )

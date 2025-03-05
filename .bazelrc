@@ -17,6 +17,7 @@ common --incompatible_disallow_empty_glob
 # https://github.com/kythe/kythe/issues/5893
 common --noenable_bzlmod
 common --enable_workspace
+common --lockfile_mode=update
 
 common --workspace_status_command tools/buildstamp/get_workspace_status
 
@@ -38,7 +39,7 @@ common --per_file_copt=external/.*@-w
 common --host_copt=-w
 
 # Ensure environment variables are static across machines; allows for cross-user caching.
-common --experimental_strict_action_env
+common --incompatible_strict_action_env
 
 # Write build outputs in a platform-specific directory,
 # avoid outputs being wiped and rewritten when switching between platforms.

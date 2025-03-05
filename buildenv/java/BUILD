@@ -19,7 +19,7 @@ package(default_visibility = ["//visibility:public"])
         source_version = version,
         target_version = version,
     )
-    for version in ("11", "17", "19", "20", "21")
+    for version in ("11", "17", "19", "21")
 ]
 
 config_setting(
@@ -66,10 +66,6 @@ config_setting(
             "remotejdk_19",
             "19",
         ],
-        "20": [
-            "remotejdk_20",
-            "20",
-        ],
         "21": [
             "remotejdk_21",
             "21",
@@ -93,7 +89,6 @@ config_setting(
         "11",
         "17",
         "19",
-        "20",
         "21",
     )
 ]

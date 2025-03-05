@@ -43,7 +43,6 @@ java_library(
         (
             "//buildenv/java:language_version_17",
             "//buildenv/java:language_version_19",
-            "//buildenv/java:language_version_20",
             "//buildenv/java:language_version_21",
         ): [":jdk15_compatibility_shims"],
     }),
@@ -111,7 +110,7 @@ java_library(
         (
             "//buildenv/java:language_version_17",
             "//buildenv/java:language_version_19",
-            "//buildenv/java:language_version_20",
+            "//buildenv/java:language_version_21",
         ): [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
