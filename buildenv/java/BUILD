@@ -56,7 +56,6 @@ config_setting(
         "11": [
             "remotejdk_11",
             "11",
-            "rbe_jdk",
         ],
         "17": [
             "remotejdk_17",
@@ -69,6 +68,7 @@ config_setting(
         "21": [
             "remotejdk_21",
             "21",
+            "rbe_jdk",
         ],
     }.items()
 ]

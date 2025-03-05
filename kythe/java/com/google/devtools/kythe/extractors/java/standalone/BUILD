@@ -37,10 +37,10 @@ java_library(
         ":reflective_jdk_compatibility_shims",
     ] + select_with_or({
         (
-            "//buildenv/java:language_version_default",
             "//buildenv/java:language_version_11",
-        ): [":jdk9_compatibility_shims"],
+        ): [],
         (
+            "//buildenv/java:language_version_default",
             "//buildenv/java:language_version_17",
             "//buildenv/java:language_version_19",
             "//buildenv/java:language_version_21",
@@ -67,31 +67,6 @@ java_library(
     ],
     visibility = ["//visibility:private"],
     deps = ["//kythe/java/com/google/devtools/kythe/util:ordered_compatibility_service"],
-)
-
-java_library(
-    name = "jdk9_compatibility_shims",
-    srcs = ["9/JdkCompatibilityShimsImpl.java"],
-    add_exports = [
-        "jdk.compiler/com.sun.tools.javac.main",
-    ],
-    javacopts = [
-        "-Xep:PackageLocation:OFF",
-    ],
-    target_compatible_with = select_with_or({
-        (
-            "//buildenv/java:language_version_default",
-            "//buildenv/java:language_version_11",
-        ): [],
-        "//conditions:default": ["@platforms//:incompatible"],
-    }),
-    visibility = ["//visibility:private"],
-    deps = [
-        ":jdk_compatibility_shims",
-        "//kythe/java/com/google/devtools/kythe/common:autoservice",
-        "//kythe/java/com/google/devtools/kythe/util:ordered_compatibility_service",
-        "//third_party/guava",
-    ],
 )
 
 java_library(
