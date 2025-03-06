@@ -7,7 +7,7 @@ require (
 	bitbucket.org/creachadair/stringset v0.0.11
 	github.com/DataDog/zstd v1.5.5
 	github.com/apache/beam v2.31.0+incompatible
-	github.com/bazelbuild/bazel-gazelle v0.33.0
+	github.com/bazelbuild/bazel-gazelle v0.42.0
 	github.com/bazelbuild/rules_go v0.53.1-0.20250303183426-077f15fe11b9
 	github.com/beevik/etree v1.2.0
 	github.com/golang/protobuf v1.5.4
@@ -59,7 +59,7 @@ require (
 	cloud.google.com/go/iam v1.3.1 // indirect
 	cloud.google.com/go/storage v1.43.0 // indirect
 	github.com/JohannesKaufmann/html-to-markdown v1.4.1
-	github.com/bazelbuild/buildtools v0.0.0-20231011133658-72c8ba35684c // indirect
+	github.com/bazelbuild/buildtools v0.0.0-20240918101019-be1c24cc9a44 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cockroachdb/errors v1.11.1 // indirect
