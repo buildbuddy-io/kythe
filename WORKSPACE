@@ -232,7 +232,7 @@ go_download_sdk(
     version = GO_SDK_VERSION,
 )
 
-go_register_toolchains(nogo = "@//:my_nogo")
+go_register_toolchains()
 
 # gazelle:repository_macro external.bzl%_go_dependencies
 load("//:external.bzl", "kythe_dependencies")
