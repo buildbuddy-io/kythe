@@ -22,7 +22,6 @@ load(
     "@rules_java//java:repositories.bzl",
     "remote_jdk17_repos",
     "remote_jdk21_repos",
-    "rules_java_dependencies",
 )
 load("@rules_java//toolchains:remote_java_repository.bzl", "remote_java_repository")
 load("@rules_jvm_external//:defs.bzl", "maven_install")
@@ -31,7 +30,6 @@ load("@rules_python//python:repositories.bzl", "py_repositories")
 
 def _rule_dependencies():
     gazelle_dependencies()
-    rules_java_dependencies()
 
     # Specifically define and register only Java toolchains we intend to support.
     remote_jdk17_repos()

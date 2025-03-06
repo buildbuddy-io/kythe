@@ -95,8 +95,8 @@ load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps", "PROTOBUF_MAVE
 
 protobuf_deps()
 
-load("@rules_java//java:rules_java_deps.bzl", "rules_java_dependencies")
-rules_java_dependencies()
+load("@rules_java//java:rules_java_deps.bzl", "compatibility_proxy_repo")
+compatibility_proxy_repo()
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
