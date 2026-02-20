@@ -1,3 +1,4 @@
+load("@rules_proto//proto:proto_lang_toolchain.bzl", "proto_lang_toolchain")
 load(":extractors.bzl", "extractor_action")
 load(":vnames.bzl", "construct_vnames_config")
 
